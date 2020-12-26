@@ -11,6 +11,6 @@ spec:
     targetPort: 25777
     nodePort: 31101
     protocol: TCP
-    name: tera1-server-port
+    name: tera1-port
   selector:
     app: tera1

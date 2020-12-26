@@ -15,7 +15,7 @@ spec:
         app: tera2
     spec:
       containers:
-      - image: terasology/terasology-server
+      - image: cervator/terasology-server
         name: terasologyserver
         resources:
           requests:
@@ -44,17 +44,17 @@ spec:
         ports:
           - containerPort: 25777
             protocol: TCP
-            name: tera2-server-port
+            name: tera2-port
         volumeMounts:
         - name: tera-persistent-storage
-          mountPath: /terasology
-        - name: tera-1-config-volume
+          mountPath: /terasology/server
+        - name: tera-2-config-volume
           mountPath: /terasology-config
       volumes:
       - name: tera-persistent-storage
         persistentVolumeClaim:
           claimName: tera2-pv-claim
-      - name: tera-1-config-volume
+      - name: tera-2-config-volume
         projected:
           sources:
           - configMap:

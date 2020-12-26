@@ -3,7 +3,7 @@ if [ $# -eq 1 ]
 then
   echo "Going to work with the Terasology server $1";
   kubectl apply -f $1/tera-pvc.yaml
-  kubectl apply -f $1/TeraOverrideConfigCM.yaml
+  kubectl apply -f $1/TeraOverrideCfgCM.yaml
   kubectl apply -f TeraPlayerListsCM.yaml
   echo "Hope you remembered to update the passwords in the secrets file only locally!"
   kubectl apply -f tera-server-secrets.yaml

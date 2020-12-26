@@ -4,9 +4,10 @@ A setup for making [Terasology](https://terasology.org/) work in a Kubernetes cl
 
 An eventual goal is to include automatic server hibernation to keep hosting costs down while using [ChatOps](https://docs.stackstorm.com/chatops/chatops.html) for server maintenance tasks (for instance: asking a bot on Discord to please start up the server hosting map `x` when somebody wants to play there)
 
-Uses the [Docker image](https://hub.docker.com/r/terasology/terasology-server) from https://github.com/MovingBlocks/docker-terasology
+Uses the [Docker image](https://hub.docker.com/repository/docker/cervator/terasology-server) from https://github.com/Cervator/docker-terasology
 
 Is part of the Kubic game server series started with https://github.com/Cervator/KubicArk
+
 
 ## Instructions
 
