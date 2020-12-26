@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tera-player-lists-cm
+data:
+  whitelist.txt: |-
+      SomePlayerNameOrCertificate

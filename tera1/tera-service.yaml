@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tera1-service
+  labels:
+    app: tera1-service
+spec:
+  type: NodePort
+  ports:
+  - port: 25777
+    targetPort: 25777
+    nodePort: 31101
+    protocol: TCP
+    name: tera1-server-port
+  selector:
+    app: tera1

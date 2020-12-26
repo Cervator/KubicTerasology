@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tera2-override-cfg-cm
+data:
+  override.cfg: |-
+    {
+      "defaultModSelection": {
+        "modules": [
+            "CoreSampleGameplay",
+            "CheatsForAll",
+            "ChrisVolume1OST",
+            "FunnyBlocks"
+        ]
+      },
+      "worldGeneration": {
+        "defaultGenerator": "CoreWorlds:facetedperlin"
+      }
+    }

@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tera2
+  labels:
+    app: tera2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tera2
+  template:
+    metadata:
+      labels:
+        app: tera2
+    spec:
+      containers:
+      - image: terasology/terasology-server
+        name: terasologyserver
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 4G # With no limit set we can grow past this, which may be needed if the game server runs max heap 4 GB as well (OS needs memory too!) - limit later..
+        env:
+          # Server Parameters
+        - name: MEMORY_LIMIT
+          value: "4096m"
+        - name: SERVER_PORT # TODO: Actually implement support for setting this via CLI arg ...
+          value: "25777"  # Must be in quotes since it is meant as a value to put into an environment variable
+        - name: SERVER_NAME
+          value: NotUsedYet11
+        - name: OVERRIDE_CFG_PATH
+          value: /terasology-config/override.cfg
+        - name: SERVERPASSWORD # Also not used yet nor is the other password ...
+          valueFrom:
+            secretKeyRef:
+              name: terasology-server-secrets
+              key: serverPass
+        - name: ADMINPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: terasology-server-secrets
+              key: adminPass
+        ports:
+          - containerPort: 25777
+            protocol: TCP
+            name: tera2-server-port
+        volumeMounts:
+        - name: tera-persistent-storage
+          mountPath: /terasology
+        - name: tera-1-config-volume
+          mountPath: /terasology-config
+      volumes:
+      - name: tera-persistent-storage
+        persistentVolumeClaim:
+          claimName: tera2-pv-claim
+      - name: tera-1-config-volume
+        projected:
+          sources:
+          - configMap:
+              name: tera2-override-cfg-cm
+          - configMap:
+              name: tera-player-lists-cm
